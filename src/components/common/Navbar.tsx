@@ -29,7 +29,6 @@ function Navbar() {
                <div className="flex gap-5 justify-between">
                    <NavLink to='/signup' className={({isActive}) => isActive ? "font-bold text-xl text-orange-300 " : "font-bold text-white text-xl"}>Signup</NavLink>
                    <NavLink to='/login' className={({isActive}) => isActive ? "font-bold text-orange-300 text-xl" : "font-bold text-white text-xl"}> Login </NavLink>  
-                   <NavLink to='/dashboard' className={({isActive}) => isActive ? "font-bold text-orange-300 text-xl" : "font-bold text-white text-xl"}> dashboard </NavLink>    
                </div>
             }
         </div>
