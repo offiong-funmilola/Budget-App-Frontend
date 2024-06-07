@@ -1,17 +1,17 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Navbar from '../common/Navbar'
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
 import { FaEye, FaEyeSlash} from "react-icons/fa";
 import {useState, useContext} from 'react'
 import BudgetContext from '../context/BudgetContext';
-import { ContextType } from '../../type';
-
-
+import { ContextType} from '../../type';
+import {  toast } from "react-toastify";
 
 
 function Signup() {
-  const {postReq} = useContext(BudgetContext) as ContextType
+  const naviagte = useNavigate()
+  const {postReq, } = useContext(BudgetContext) as ContextType
     const [showPassword, setShowPassword] = useState<boolean>(false)
     const [type, setType] = useState<string>('password')
  
@@ -51,16 +51,23 @@ function Signup() {
         confirmPassword: ''
       },
       validationSchema : validationSchema,
-      onSubmit: (values, {resetForm}) => {
+      onSubmit: async(values, {resetForm}) => {
         try{
-          const res = postReq('http://localhost:8000/auth/signup', values)
-          console.log(res)
+          const res = await postReq('http://localhost:8000/auth/signup', values)
+            if(res.message === 'Successful'){
+              toast.success('You have sign up successfully')
+              naviagte('/login')
+            }
+            else{
+              toast.warn('Sorry, something went wrong. Try again')
+            }
         }
         catch(error:any){
-          console.log(error)
+          toast.error("An error occurred. Try again")
         }
-        alert("Form submitted successfully");
-        resetForm()
+        finally{
+          resetForm()
+        } 
       }
     })
 
@@ -89,8 +96,8 @@ function Signup() {
                       {formik.touched.password && formik.errors.password ? <p className='text-red-500 text-sm'>{formik.errors.password}</p> : null}
                     </div>
                     <div className='w-3/4 flex flex-col gap-2 text-lg relative'>
-                      <label htmlFor='confirmPassword'>Password</label> 
-                      <input id="confirmPassword" type="password" name="confirmPassword" className='w-full h-10 border-2 rounded-md border-purple-900 px-4 py-3' onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.confirmPassword}/>
+                      <label htmlFor='confirmPassword'>Confirm Password</label> 
+                      <input id="confirmPassword" type={type} name="confirmPassword" className='w-full h-10 border-2 rounded-md border-purple-900 px-4 py-3' onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.confirmPassword}/>
                       <div className='absolute w-6 h-6 top-12 right-4'>
                         {showPassword ? <FaEyeSlash onClick={handlePasswordChange} className='text-xl'/> : <FaEye onClick={handlePasswordChange}/>}
                       </div>

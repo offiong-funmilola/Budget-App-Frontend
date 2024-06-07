@@ -1,4 +1,4 @@
-import {Link} from 'react-router-dom'
+import {Link, useNavigate} from 'react-router-dom'
 import Navbar from '../common/Navbar'
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
@@ -6,8 +6,10 @@ import { FaEye, FaEyeSlash} from "react-icons/fa";
 import {useState, useContext} from 'react'
 import BudgetContext from '../context/BudgetContext';
 import { ContextType } from '../../type';
+import {  toast } from "react-toastify";
 
 function Login() {
+  const navigate = useNavigate()
   const {postReq} =useContext(BudgetContext) as ContextType
     const [showPassword, setShowPassword] = useState<boolean>(false)
     const [type, setType] = useState<string>('password')
@@ -39,21 +41,30 @@ function Login() {
       password: '',
     },
     validationSchema : validationSchema,
-    onSubmit: (values, {resetForm}) => {
+    onSubmit: async(values, {resetForm}) => {
       try{
-          const res = postReq('http://localhost:8000/auth/login', values)
-          console.log(res)
-
+          const res = await postReq('http://localhost:8000/auth/login', values)
+          if(res.token){
+            toast.success('Login successful')
+            localStorage.setItem('token', res.token)
+            if(res.user) {
+              localStorage.setItem('user', JSON.stringify(res.user))
+              navigate('/dashboard')
+            } 
+          }
+          else {
+            toast.warn('We could not process your request. Try again')
+          }
       }
       catch(error:any){
           if(error.status === 404){
-            throw Error('User not found')
+            console.log('User not found')
+            toast.error('User not found')
           }
       }
-      
-      console.log(values)
-      alert("Form submitted successfully");
-      resetForm()
+      finally {
+        resetForm()
+      }
     }
   })
 
