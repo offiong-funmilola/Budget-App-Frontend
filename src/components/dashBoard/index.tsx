@@ -8,9 +8,9 @@ import { ContextType } from "../../type"
 function Dashboard() {
   const {currentUser} = useContext(BudgetContext) as ContextType
  
-  // if(!currentUser){
-  //   return <Login/>
-  // }
+  if(!currentUser){
+    return <Login/>
+  }
 
   return (
     <DashboardLayout>

@@ -1,5 +1,5 @@
-import { createContext, useReducer, useState} from 'react'
-import { FetchType, DataType, Nullable, Record, User} from '../../type'
+import { createContext, useReducer} from 'react'
+import { FetchType, DataType, Nullable, Record} from '../../type'
 import { recordReducer } from '../../reducer'
 
 
