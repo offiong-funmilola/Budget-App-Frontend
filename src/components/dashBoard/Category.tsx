@@ -26,8 +26,6 @@ function Category() {
         let newListArray = [...category.budget]
        newListArray.splice(index, 1, {...newListArray[index], [e.target.name]: e.target.value})
        setCalculatedAmount(newListArray)
-      // let totalEstimatedAmount = newListArray.reduce((acc, {amount})=> acc + Number(amount), 0)
-       //console.log(totalEstimatedAmount)
        setCategory(prevState => ({...prevState, budget: newListArray}))
        
     }
@@ -48,7 +46,7 @@ function Category() {
    
     return (
         <div className="w-full h-full flex flex-col gap-3 items-center justify-center">
-            <div className="w-3/4 border-2 border-gray-500 px-10 py-2 flex flex-col gap-3 rounded-2xl">
+            <div className="w-full lg:w-3/4 border-2 border-gray-500 px-2 lg:px-10 py-2 flex flex-col gap-3 rounded-2xl">
                 <div className="w-full flex flex-col gap-1">
                     <label htmlFor='categoryName' className="text-xl text-black">Category Name</label>
                     <input id='categoryName' type='text' name='categoryName' value={category?.name} onChange={(e) => {setCategory({...category, name: e.target.value})}} className="w-3/4 px-3 py-3 border border-gray-400 rounded-xl text-xl font-bold"/>

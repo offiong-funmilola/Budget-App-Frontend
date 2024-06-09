@@ -26,7 +26,7 @@ function Saving() {
     const {dispatch} = useContext(BudgetContext) as ContextType
   return (
     <div className="w-full h-full flex items-center justify-center">
-        <div className="w-3/4 h-full p-5 bg-white rounded-md">
+        <div className="w-full lg:w-3/4 h-full p-5 bg-white rounded-md">
             <form className="w-full h-28 flex flex-col justify-start items-center gap-3">
                 <h3 className="text-xl font-sans  font-semibold">Make a Saving Goal for the month</h3>
                 <div className="w-3/4 h-10 flex flex-col gap-1">

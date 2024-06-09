@@ -72,45 +72,45 @@ function Signup() {
     })
 
     return (
-        <div className='w-full h-screen'>
-            <Navbar/>
-            <div className='w-full h-[90vh] flex flex-col items-center justify-center gap-5'>
-                <h2 className='text-2xl text-purple-900'>Sign Up Form</h2>       
-                <form className='w-1/2 h-3/4 border-2 border-purple-900 p-10 flex flex-col items-center gap-5' onSubmit={formik.handleSubmit} noValidate>
-                    <div className='w-3/4 flex flex-col gap-2 text-lg'>
-                      <label htmlFor='name'>Full Name</label> 
-                      <input id="name" type="text" name="name" className='w-full h-10 border-2 rounded-md border-purple-900 px-4 py-3' onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.name} />
-                      {formik.touched.name && formik.errors.name ? <p className='text-red-500 text-sm'>{formik.errors.name}</p> : null}
-                    </div>
-                    <div className='w-3/4 flex flex-col gap-2 text-lg'>
-                      <label htmlFor='email'> Email</label> 
-                      <input id="email" type="email" name="email" className='w-full h-10 border-2 rounded-md border-purple-900 px-4 py-3' onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.email}/>
-                      {formik.touched.email && formik.errors.email ? <p className='text-red-500 text-sm'>{formik.errors.email}</p> : null}
-                    </div>
-                    <div className='w-3/4 flex flex-col gap-2 text-lg relative'>
-                      <label htmlFor='password'>Password</label> 
-                      <input id="password" type={type} name="password" className='w-full h-10 border-2 rounded-md border-purple-900 px-4 py-3' onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.password}/>
-                      <div className='absolute w-6 h-6 top-12 right-4'>
-                        {showPassword ? <FaEyeSlash onClick={handlePasswordChange} className='text-xl'/> : <FaEye onClick={handlePasswordChange}/>}
-                      </div>
-                      {formik.touched.password && formik.errors.password ? <p className='text-red-500 text-sm'>{formik.errors.password}</p> : null}
-                    </div>
-                    <div className='w-3/4 flex flex-col gap-2 text-lg relative'>
-                      <label htmlFor='confirmPassword'>Confirm Password</label> 
-                      <input id="confirmPassword" type={type} name="confirmPassword" className='w-full h-10 border-2 rounded-md border-purple-900 px-4 py-3' onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.confirmPassword}/>
-                      <div className='absolute w-6 h-6 top-12 right-4'>
-                        {showPassword ? <FaEyeSlash onClick={handlePasswordChange} className='text-xl'/> : <FaEye onClick={handlePasswordChange}/>}
-                      </div>
-                      {formik.touched.confirmPassword && formik.errors.confirmPassword ? <p className='text-red-500 text-sm'>{formik.errors.confirmPassword}</p> : null}
-                    </div>
-                    <button type="submit" className='w-32 px-5 py-2 rounded-md border-2 border-purple-900 text-purple-900 text-lg'>Submit</button>
-                </form>
-                <div className='w-full flex items-end justify-center gap-2'>
-                    <p className='text-lg'>Already have an account</p>
-                    <Link to='/login' className='text-xl font-bold text-purple-900'>Login</Link>
+      <div className='w-full h-screen'>
+        <Navbar/>
+        <div className='w-full h-[90vh] flex flex-col items-center justify-center gap-5'>
+          <h2 className='text-2xl text-purple-900'>Sign Up Form</h2>       
+          <form className='w-3/4 lg:w-1/2 h-3/4 border-2 border-purple-900 p-5 md:p-10 flex flex-col items-center gap-5' onSubmit={formik.handleSubmit} noValidate>
+              <div className='w-3/4 flex flex-col gap-2 text-lg'>
+                <label htmlFor='name'>Full Name</label> 
+                <input id="name" type="text" name="name" className='w-full h-10 border-2 rounded-md border-purple-900 px-4 py-3' onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.name} />
+                {formik.touched.name && formik.errors.name ? <p className='text-red-500 text-sm'>{formik.errors.name}</p> : null}
+              </div>
+              <div className='w-3/4 flex flex-col gap-2 text-lg'>
+                <label htmlFor='email'> Email</label> 
+                <input id="email" type="email" name="email" className='w-full h-10 border-2 rounded-md border-purple-900 px-4 py-3' onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.email}/>
+                {formik.touched.email && formik.errors.email ? <p className='text-red-500 text-sm'>{formik.errors.email}</p> : null}
+              </div>
+              <div className='w-3/4 flex flex-col gap-2 text-lg relative'>
+                <label htmlFor='password'>Password</label> 
+                <input id="password" type={type} name="password" className='w-full h-10 border-2 rounded-md border-purple-900 px-4 py-3' onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.password}/>
+                <div className='absolute w-6 h-6 top-12 right-4'>
+                  {showPassword ? <FaEyeSlash onClick={handlePasswordChange} className='text-xl'/> : <FaEye onClick={handlePasswordChange}/>}
                 </div>
-            </div> 
-        </div>
+                {formik.touched.password && formik.errors.password ? <p className='text-red-500 text-sm'>{formik.errors.password}</p> : null}
+              </div>
+              <div className='w-3/4 flex flex-col gap-2 text-lg relative'>
+                <label htmlFor='confirmPassword'>Confirm Password</label> 
+                <input id="confirmPassword" type={type} name="confirmPassword" className='w-full h-10 border-2 rounded-md border-purple-900 px-4 py-3' onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.confirmPassword}/>
+                <div className='absolute w-6 h-6 top-12 right-4'>
+                  {showPassword ? <FaEyeSlash onClick={handlePasswordChange} className='text-xl'/> : <FaEye onClick={handlePasswordChange}/>}
+                </div>
+                {formik.touched.confirmPassword && formik.errors.confirmPassword ? <p className='text-red-500 text-sm'>{formik.errors.confirmPassword}</p> : null}
+              </div>
+              <button type="submit" className='w-32 px-5 py-2 rounded-md border-2 border-purple-900 text-purple-900 text-lg'>Submit</button>
+          </form>
+          <div className='w-full flex items-end justify-center gap-2'>
+            <p className='text-lg'>Already have an account</p>
+            <Link to='/login' className='text-xl font-bold text-purple-900'>Login</Link>
+          </div>
+        </div> 
+      </div>
     )
 }
 

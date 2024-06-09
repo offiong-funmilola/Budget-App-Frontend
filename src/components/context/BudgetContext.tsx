@@ -9,9 +9,9 @@ export const BudgetProvider = ({children} : {
     children: JSX.Element;
     }) => {
         let token: Nullable<string> = localStorage.getItem('token')
-        const [currentUser, setCurrentUser] = useState<User>()
-        const [error, setError] = useState<string>('')
-       
+       let currentUser = localStorage.getItem('user') 
+        currentUser = currentUser ? JSON.parse(currentUser) : undefined
+ 
         const initialRecord:Record = {
             month: '',
             year: '',
@@ -91,7 +91,7 @@ export const BudgetProvider = ({children} : {
 
         const clearStorage = () => {
             localStorage.removeItem('token')
-            localStorage.removeItem('id')
+            localStorage.removeItem('user')
         }
 
         const captalizeFistletter = (str:string) => {
@@ -102,7 +102,7 @@ export const BudgetProvider = ({children} : {
         }
         return (
             <BudgetContext.Provider 
-                value={{postReq, putReq, getReq, deleteReq, clearStorage, record, dispatch, currentUser, setCurrentUser, captalizeFistletter, error, setError}}
+                value={{postReq, putReq, getReq, deleteReq, clearStorage, record, dispatch, currentUser, captalizeFistletter,}}
             >
                 {children}
             </BudgetContext.Provider>

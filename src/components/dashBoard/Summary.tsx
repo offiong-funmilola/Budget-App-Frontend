@@ -13,12 +13,12 @@ function Summary() {
   console.log(record.month, record.year)
   return (
     <div className="w-full h-full p-5">
-      <div className="w-5/6 h-full m-auto bg-white flex flex-col gap-2 p-5 rounded-2xl overflow-y-auto">
+      <div className="w-full md:w-5/6 h-full m-auto bg-white flex flex-col gap-2 p-5 rounded-2xl overflow-y-auto">
         <h3 className="text-2xl font-bold font-sans text-purple-900 text-center">Report for {`${record.month} / ${record.year}`}</h3>
-        <div>
+        <div className="w-full">
           <h4 className="text-xl font-sans font-bold">Income</h4>
           <div className="w-full">
-            <table className="w-1/2">
+            <table className="w-full">
               <thead className="w-full">
                 <tr className="w-full flex justify-between px-2 rounded-xl font-bold text-lg">
                   <td>Source of Income</td>
@@ -42,8 +42,8 @@ function Summary() {
             </table>
           </div>
         </div>
-        <div>
-          <h4>Intended Saving</h4>
+        <div className="w-full flex h-10 py-5 px-2 items-center gap-5">
+          <h4 className="font-bold font-sans text-xl">Intended Saving</h4>
           <p>{record.savingAmount}</p>
         </div>
         <div className="w-full">

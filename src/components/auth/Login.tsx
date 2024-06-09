@@ -72,7 +72,7 @@ function Login() {
     <div className='w-full h-screen'>
         <Navbar/>
         <div className='w-full h-[90vh] flex flex-col items-center justify-center gap-6'>
-            <form className='w-1/2 h-1/2 border-2 border-purple-900 p-10 flex flex-col items-center gap-5' onSubmit={formik.handleSubmit}>
+            <form className='w-3/4 lg:w-1/2 h-1/2 border-2 border-purple-900 p-5 lg:p-10 flex flex-col items-center gap-5' onSubmit={formik.handleSubmit}>
                 <h3 className='text-2xl text-purple-900'>Welcome Back </h3>
                 <div className='w-3/4 flex flex-col gap-2 text-lg'>
                     <label htmlFor='email'>Email</label>

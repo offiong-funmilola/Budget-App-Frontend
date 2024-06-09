@@ -6,30 +6,19 @@ import {useContext} from 'react'
 import BudgetContext from "../context/BudgetContext"
 
 
-
-//record.category 
-//const category: Expenses[] = [{name:'Groceries', amount: 70}, {name:'Bills', amount: 1450}, {name:'Kids', amount: 500} ]
-//filter out the bills from the record.category
-//const categoryBills: Bill[] = [{name: 'Rent', date:'06/01/2024'}, {name: 'Electricity', date: '06/15/2024'}, {name:'Transport', date:'06/12/2024'}, {name:'Internet', date:'06/14/2024'}, {name:'Insurance', date:'06/17/2024'}]
 const today = new Date()
-
-// const compareDate = ({a, b} : Bill) =>{
-//   // Turn your strings into dates, and then subtract them
-//   // to get a value that is either negative, positive, or zero.
-//   return new Date(b.date) - new Date(a.date);
-// };
 
 function DashboardLayout ({children}: ChildrenType) {
   const {record} = useContext(BudgetContext) as ContextType
 
   return (
     <div className="w-full h-screen bg-purple-500 px-10 py-5">
-      <div className="w-full h-full border rounded-2xl bg-white grid grid-cols-7 grid-rows-1">
-        <div className="col-span-1 row-span-1">
+      <div className="w-full h-full border rounded-2xl bg-white lg:grid grid-cols-7 grid-rows-1">
+        <div className="hidden lg:block col-span-1 row-span-1">
           <DashboardSideBar/>
         </div>
-        <div className="col-start-2 col-end-8 row-span-1 grid grid-cols-10 grid-rows-1">
-          <div className="col-span-8 row-span-1 bg-slate-100 p-10 grid grid-rows-8 gap-5">
+        <div className="w-full h-full rounded-2xl lg:rounded-none lg:col-start-2 lg:col-end-8 lg:grid grid-cols-10 grid-rows-1">
+          <div className="w-full h-full rounded-2xl lg:rounded-none lg:col-span-8 lg:row-span-1 bg-slate-100 p-10 grid grid-rows-8 gap-5">
             <div className="w-full row-span-1">
               <DashboardNavbar/>
             </div>
@@ -37,7 +26,7 @@ function DashboardLayout ({children}: ChildrenType) {
               {children}
             </div>
           </div>
-          <div className="col-start-9 col-end-11 row-span-1 py-10 grid grid-rows-12 gap-2 ">
+          <div className="hidden lg:col-start-9 lg:col-end-11 row-span-1 py-10 lg:grid grid-rows-12 gap-2 ">
             <div className="w-full row-span-1">
               <SideNavbar/>
             </div>
@@ -77,12 +66,6 @@ function DashboardLayout ({children}: ChildrenType) {
                         <td className="w-[60%] h-full text-end">{bill.date}</td>
                       </tr>
                     )} 
-                    {/* {record.category && record.category.filter((bill) => new Date(bill.date) >= today).sort((a,b) => Date.parse(a.date) - Date.parse(b.date)).map((bill) => 
-                      <tr key={bill.name} className="w-full h-12">
-                        <td className="w-[40%] h-full text-start">{bill.name}</td>
-                        <td className="w-[60%] h-full text-end">{bill.date}</td>
-                      </tr>
-                    )} */}
                   </tbody>
                 </table>
               </div>

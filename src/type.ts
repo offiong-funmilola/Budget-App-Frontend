@@ -44,10 +44,8 @@ export  type ContextType = {
     dispatch: Dispatch<Action>
     record: Record
     currentUser: User
-    setCurrentUser: React.Dispatch<React.SetStateAction<User>>
     captalizeFistletter: (str:string) => string
-    error: string
-    setError: React.Dispatch<React.SetStateAction<string>>
+    
 }
 
 export type ChildrenType = {

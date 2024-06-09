@@ -26,8 +26,6 @@ function DisplayChart() {
     });
 
     const options = {
-        responsive: true,
-        maintainAspectRatio: true,
         scales: {
             y: {
                 min: 0,
@@ -43,14 +41,20 @@ function DisplayChart() {
                 display: true,
                 text: 'Expenses',
             },
+            tooltip: {
+                titleColor: 'purple',
+            },
            legend: {
                 display: true,
                 labels: {
-                    boxWidth: 20,
-                    boxHeight: 20
+                    boxWidth: 30,
+                    boxHeight: 10
                 },
             },
             
+        },
+        layout: {
+            // autoPadding: false
         }
     }
 
@@ -89,9 +93,11 @@ function DisplayChart() {
     }
     }, []);
 
-
   return (
-    <Bar datasetIdKey='id' ref={chartRef} data={chartData} options={options} />
+    <div className='w-full h-full'>
+         <Bar datasetIdKey='id' ref={chartRef} data={chartData} options={options} style={{height:'100%', width:'100%'}}/>
+    </div>
+   
   )
 }
 

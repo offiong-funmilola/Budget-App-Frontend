@@ -61,8 +61,8 @@ function Income() {
     }
 
     return (
-        <div className="w-full h-full flex flex-col items-center justify-center p-5 gap-5">
-            <div className="w-1/2 flex gap-3">
+        <div className="w-full h-full flex flex-col items-center justify-center p-5 gap-5 ">
+            <div className="w-full md:w-3/4 lg:w-1/2 flex gap-3">
                 <div className="w-1/2">
                     <Select options={options} onChange={(choice) => dispatch({type: ActionType.addMonth, payload: choice?.value})} className="w-full border border-gray-500 rounded-md px-3 py-4"/>
                 </div>
@@ -71,7 +71,7 @@ function Income() {
                 </div>
             </div>
             <h4 className="text-2xl font-sans font-bold">Enter Your Source of Income</h4>
-            <form className="w-1/2 h-1/2 border border-purple-900 py-5 px-10 flex flex-col gap-3 rounded-2xl bg-white" onSubmit={handleSubmit}>
+            <form className="w-full md:w-3/4 lg:w-1/2 h-1/2 border border-purple-900 py-5 px-10 flex flex-col gap-3 rounded-2xl bg-white" onSubmit={handleSubmit}>
                 <div className="w-full flex flex-col gap-1 text-lg">
                     <label htmlFor='source'>Source of Income</label>
                     <Select options={incomeOption} name='source' onChange={(choice) => setValues({...values, source: choice?.value})}/>

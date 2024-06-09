@@ -1,9 +1,11 @@
 import { IoIosNotificationsOutline } from "react-icons/io"
 import { CgProfile } from "react-icons/cg";
-import {User} from '../../type'
+import {ContextType} from '../../type'
+import BudgetContext from "../context/BudgetContext";
+import { useContext } from "react";
 
 function SideNavbar() {
-  let currentUser:User  = JSON.parse(localStorage.getItem('user') || '') 
+  const {currentUser} = useContext(BudgetContext) as ContextType
   
   return (
     <div className="w-full h-full flex items-center justify-start px-5 gap-6">

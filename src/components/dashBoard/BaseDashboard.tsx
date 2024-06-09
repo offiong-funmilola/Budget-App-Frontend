@@ -1,17 +1,11 @@
 import DisplayChart from "./DisplayChart"
 import BudgetContext from "../context/BudgetContext"
-import { ContextType, User } from "../../type"
+import { ContextType } from "../../type"
 import { useContext } from "react"
-import { useNavigate } from "react-router-dom"
+
 
 function BaseDashboard() {
-    const navigate = useNavigate()
     const {record} = useContext(BudgetContext) as ContextType
-    let currentUser:User  = JSON.parse(localStorage.getItem('user') || '') 
-    
-    if(!currentUser){
-         navigate('/login')
-    }
     return (
         <div className='w-full h-full grid grid-cols-1 grid-rows-4 gap-5'>
             <div className='row-span-1 col-span-1 grid grid-cols-3 gap-5'>
