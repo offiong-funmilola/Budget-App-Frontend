@@ -1,12 +1,10 @@
 import Login from "../auth/Login"
 import DashboardLayout from "../layout/DashboardLayout"
 import { Outlet } from "react-router-dom"
-import BudgetContext from "../context/BudgetContext"
-import { useContext } from "react"
-import { ContextType } from "../../type"
 
 function Dashboard() {
-  const {currentUser} = useContext(BudgetContext) as ContextType
+  let currentUser = localStorage.getItem('user') 
+  currentUser = currentUser ? JSON.parse(currentUser) : undefined
  
   if(!currentUser){
     return <Login/>

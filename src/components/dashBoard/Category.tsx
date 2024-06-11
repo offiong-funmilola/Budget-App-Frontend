@@ -5,6 +5,7 @@ import {BudgetItem, ContextType, ActionType, type Category} from '../../type'
 import { useState, useContext } from "react";
 import BudgetContext from "../context/BudgetContext";
 
+
 function Category() {
     const {dispatch} = useContext(BudgetContext) as ContextType
     const [category, setCategory] = useState<Category>({name: '', budget: [], totalBudget: 0})
@@ -24,10 +25,9 @@ function Category() {
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>, index: number) => {
         let newListArray = [...category.budget]
-       newListArray.splice(index, 1, {...newListArray[index], [e.target.name]: e.target.value})
-       setCalculatedAmount(newListArray)
-       setCategory(prevState => ({...prevState, budget: newListArray}))
-       
+        newListArray.splice(index, 1, {...newListArray[index], [e.target.name]: e.target.value})
+        setCalculatedAmount(newListArray)
+        setCategory(prevState => ({...prevState, budget: newListArray}))
     }
 
     const handleDelete = (e:any, listIndex:number) => {

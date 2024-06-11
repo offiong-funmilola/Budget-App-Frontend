@@ -9,7 +9,7 @@ export const BudgetProvider = ({children} : {
     children: JSX.Element;
     }) => {
         let token: Nullable<string> = localStorage.getItem('token')
-       let currentUser = localStorage.getItem('user') 
+        let currentUser = localStorage.getItem('user') 
         currentUser = currentUser ? JSON.parse(currentUser) : undefined
  
         const initialRecord:Record = {
