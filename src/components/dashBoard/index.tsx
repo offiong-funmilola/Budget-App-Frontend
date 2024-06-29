@@ -6,9 +6,9 @@ function Dashboard() {
   let currentUser = localStorage.getItem('user') 
   currentUser = currentUser ? JSON.parse(currentUser) : undefined
  
-  if(!currentUser){
-    return <Login/>
-  }
+  // if(!currentUser){
+  //   return <Login/>
+  // }
 
   return (
     <DashboardLayout>

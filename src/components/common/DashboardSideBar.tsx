@@ -42,12 +42,12 @@ function DashboardSideBar() {
                     </div>
                     <p>Savings</p>  
                 </NavLink>
-                <NavLink to='/dashboard/analytics' className={({isActive})=> isActive ? 'w-full h-10 flex items-center gap-1 text-purple-900 text-lg' : 'w-full h-10 flex items-center gap-1 text-black text-lg'}>
+                {/* <NavLink to='/dashboard/analytics' className={({isActive})=> isActive ? 'w-full h-10 flex items-center gap-1 text-purple-900 text-lg' : 'w-full h-10 flex items-center gap-1 text-black text-lg'}>
                     <div className="w-10 h-8 flex items-center justify-center p-2">
                         <GrAnalytics className="text-2xl"/>
                     </div>
                     <p>Analytics</p>
-                </NavLink>
+                </NavLink> */}
                 <NavLink to='/dashboard/Category' className={({isActive})=> isActive ? 'w-full h-10 flex items-center gap-1 text-purple-900 text-lg' : 'w-full h-10 flex items-center gap-1 text-black text-lg'}>
                     <div className="w-10 h-8 flex items-center justify-center p-2">
                         <AiOutlineTransaction className="text-2xl" />

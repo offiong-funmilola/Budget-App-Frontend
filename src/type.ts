@@ -17,15 +17,20 @@ export type ParaType = {
 
 export type DataType = {
     name?: string,
-    password: string,
-    email: string
+    password?: string,
+    email?: string,
+    month?: string,
+    year?: string,
+    saving?: number,
+    income?: Income[],
 }
 
 export type Response = {
     message: string,
     token?: string,
     userId?: string,
-    user?: User
+    user?: User,
+    recordId?: string
 }
 
 export type User = {
@@ -60,7 +65,7 @@ export enum ActionType {
    addCategoryExpenditure,
    addYear,
    addSaving,
-  }
+}
 
 export type Record = {
     month?: string,
@@ -131,4 +136,10 @@ export type Expenses = {
 export type Bill = {
   name: string,
   date: string
+}
+
+export type Create = {
+    month?: string,
+    year?: string,
+    saving: number
 }

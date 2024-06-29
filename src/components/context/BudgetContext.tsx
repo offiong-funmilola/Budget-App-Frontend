@@ -9,8 +9,10 @@ export const BudgetProvider = ({children} : {
     children: JSX.Element;
     }) => {
         let token: Nullable<string> = localStorage.getItem('token')
+        console.log(token)
         let currentUser = localStorage.getItem('user') 
         currentUser = currentUser ? JSON.parse(currentUser) : undefined
+        let recordId = localStorage.getItem('recordId')
  
         const initialRecord:Record = {
             month: '',
@@ -31,7 +33,7 @@ export const BudgetProvider = ({children} : {
             }
             if(data) {
                 fetchOptions.body = JSON.stringify(data)
-                //console.log(fetchOptions.body)
+                console.log(fetchOptions.body)
             }
             if(header) {
                 fetchOptions.headers = Object.entries(header)
@@ -92,6 +94,7 @@ export const BudgetProvider = ({children} : {
         const clearStorage = () => {
             localStorage.removeItem('token')
             localStorage.removeItem('user')
+            localStorage.removeItem('recordId')
         }
 
         const captalizeFistletter = (str:string) => {
@@ -102,7 +105,7 @@ export const BudgetProvider = ({children} : {
         }
         return (
             <BudgetContext.Provider 
-                value={{postReq, putReq, getReq, deleteReq, clearStorage, record, dispatch, currentUser, captalizeFistletter,}}
+                value={{postReq, putReq, getReq, deleteReq, clearStorage, record, dispatch, currentUser, captalizeFistletter, recordId}}
             >
                 {children}
             </BudgetContext.Provider>
