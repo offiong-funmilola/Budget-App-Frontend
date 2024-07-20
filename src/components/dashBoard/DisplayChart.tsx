@@ -1,105 +1,81 @@
-import {useEffect, useRef, useState} from 'react'
-import { Chart as ChartJS, BarElement, Tooltip, Legend,  CategoryScale, LinearScale,  } from "chart.js";
-import { Bar } from "react-chartjs-2";
+import { useEffect, useRef, useState } from "react";
+import {
+  Chart as ChartJS,
+  BarElement,
+  Tooltip,
+  Legend,
+  CategoryScale,
+  LinearScale,
+} from "chart.js";
+import { Bar } from "react-chartjs-2"
+import { ChartData } from "../../type";
+import {labels, datasets} from '../../data'
 
-    ChartJS.register( BarElement, Tooltip, Legend, CategoryScale, LinearScale,);
+ChartJS.register(BarElement, Tooltip, Legend, CategoryScale, LinearScale);
 
-    type ChartData = {
-        labels: string [],
-        datasets: Data []
-    }
 
-    type Data = {
-        id: number,
-        label: string,
-        data: number[],
-        backgroundColor: string,
-        borderColor: string,
-        borderWidth?: number
-    }
 
 function DisplayChart() {
-    const chartRef = useRef(null);
-    const [chartData, setChartData] = useState<ChartData>({
-        labels: [],
-        datasets: [],
-    });
+  const chartRef = useRef(null);
+  const [chartData, setChartData] = useState<ChartData>({
+    labels: [],
+    datasets: [],
+  });
 
-    const options = {
-        scales: {
-            y: {
-                min: 0,
-                max: 100,
-                stepwise: 10,
-                callback: function(value: number) {
-                    return(value / this.max *100).toFixed(0) + "%" // convert it to percentage
-                }
-            },
+  const options = {
+    scales: {
+      y: {
+        min: 0,
+        max: 100,
+        stepwise: 10,
+        callback: (value: number, index: number, values: number[]) => {
+          return (value / 100 * 100).toFixed(0) + "%"; // convert it to percentage
         },
-        plugins: {
-            title: {
-                display: true,
-                text: 'Expenses',
-            },
-            tooltip: {
-                titleColor: 'purple',
-            },
-           legend: {
-                display: true,
-                labels: {
-                    boxWidth: 30,
-                    boxHeight: 10
-                },
-            },
-            
+      },
+    },
+    plugins: {
+      title: {
+        display: true,
+        text: "Expenses",
+      },
+      tooltip: {
+        titleColor: "purple",
+      },
+      legend: {
+        display: true,
+        labels: {
+          boxWidth: 30,
+          boxHeight: 10,
         },
-        layout: {
-            // autoPadding: false
-        }
-    }
+      },
+    },
+    layout: {
+      // autoPadding: false
+    },
+  };
 
-    useEffect(() => {
+  useEffect(() => {
     const chart = chartRef.current;
 
     if (chart) {
-        setChartData({
-            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', "Jun", 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-            datasets: [
-                {   id: 1,
-                    label: "Groceries",
-                    data: [5, 5, 7, 8, 6, 6, 6, 5, 5, 6, 7, 10],
-                    backgroundColor: "rgba(48, 112, 179)",
-                    borderColor: 'rgb(48, 112, 179,)',
-                    
-                },
-                {
-                    id: 2,
-                    label: "Bills",
-                    data: [50, 60, 60, 60, 63, 65, 60, 57, 65, 65, 65, 60],
-                    backgroundColor: "rgba(255, 99, 132)",
-                    borderColor: 'rgb(255, 99, 132)',
-                   
-                },
-                {
-                    id: 3,
-                    label: "Others",
-                    data: [15, 15, 17, 18, 16, 16, 16, 15, 15, 16, 17, 10],
-                    backgroundColor: "rgba(75, 192, 192)",
-                    borderColor: 'rgb(75, 192, 192)',
-                   
-                }
-            ]
-        });
+      setChartData({
+        labels: labels,
+        datasets: datasets
+      });
     }
-    }, []);
+  }, []);
 
   return (
-    <div className='w-full h-full'>
-         <Bar datasetIdKey='id' ref={chartRef} data={chartData} options={options} style={{height:'100%', width:'100%'}}/>
+    <div className="w-full h-full">
+      <Bar
+        datasetIdKey="id"
+        ref={chartRef}
+        data={chartData}
+        options={options}
+        style={{ height: "100%", width: "100%" }}
+      />
     </div>
-   
   )
 }
 
-export default DisplayChart
-
+export default DisplayChart;

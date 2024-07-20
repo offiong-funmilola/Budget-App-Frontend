@@ -3,25 +3,25 @@ import Navbar from '../common/Navbar'
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
 import { FaEye, FaEyeSlash} from "react-icons/fa";
-import {useState, useContext} from 'react'
-import BudgetContext from '../context/BudgetContext';
-import { ContextType } from '../../type';
+import {useState} from 'react'
+import {useClientRequestContext} from '../context/RequestContext';
 import {  toast } from "react-toastify";
+
 
 function Login() {
   const navigate = useNavigate()
-  const {postReq} =useContext(BudgetContext) as ContextType
+  const {postReq} = useClientRequestContext()
     const [showPassword, setShowPassword] = useState<boolean>(false)
-    const [type, setType] = useState<string>('password')
- 
+    const type = showPassword ? 'text' : 'password';
+    
     const handlePasswordChange = () => {
          setShowPassword(!showPassword)
-         if (showPassword){
-             setType('text')
-         }
-         else {
-             setType('password')
-         }
+        //  if (showPassword){
+        //      setType('text')
+        //  }
+        //  else {
+        //      setType('password')
+        //  }
     } 
   const validationSchema = Yup.object().shape({
     email: Yup.string()
@@ -44,21 +44,18 @@ function Login() {
     onSubmit: async(values, {resetForm}) => {
       try{
           const res = await postReq('http://localhost:8000/auth/login', values)
-          if(res.token){
-            toast.success('Login successful')
-            localStorage.setItem('token', res.token)
-            if(res.user) {
+            if(res?.user) {
+              toast.success('Login successful')
               localStorage.setItem('user', JSON.stringify(res.user))
               navigate('/dashboard')
             } 
-          }
           else {
-            toast.warn('We could not process your request. Try again')
+            toast.warn('InValid login detatails')
           }
       }
       catch(error:any){
           if(error.status === 404){
-            console.log('User not found')
+            //console.log('User not found')
             toast.error('User not found')
           }
       }
@@ -83,7 +80,7 @@ function Login() {
                     <label htmlFor='password'>Password</label>
                     <input id='password' type={type} name='password' className='w-full h-10 border-2 rounded-md border-purple-900 px-4 py-3' onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.password} />
                     <div className='absolute w-6 h-6 top-12 right-4'>
-                        {showPassword ? <FaEyeSlash onClick={handlePasswordChange} className='text-xl'/> : <FaEye onClick={handlePasswordChange}/>}
+                        {showPassword ? <FaEye onClick={handlePasswordChange} className='text-xl'/> : <FaEyeSlash onClick={handlePasswordChange}/>}
                       </div>
                     {formik.touched.password && formik.errors.password ? <p className='text-red-500 text-sm'>{formik.errors.password}</p> : null}
                 </div>
